@@ -6,8 +6,9 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            QuickSort qs = new QuickSort();
-            qs.Run();
+            var sol = new LevelOrderTraversal();
+            sol.Run();
+            Console.ReadLine();
         }
     }
 }
