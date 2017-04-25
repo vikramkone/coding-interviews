@@ -6,7 +6,7 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            var sol = new LevelOrderTraversal();
+            var sol = new MergeSort();
             sol.Run();
             Console.ReadLine();
         }
