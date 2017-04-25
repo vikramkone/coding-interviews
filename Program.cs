@@ -6,7 +6,8 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            QuickSort qs = new QuickSort();
+            qs.Run();
         }
     }
 }
