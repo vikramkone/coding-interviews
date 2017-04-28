@@ -1,33 +1,116 @@
-namespace CodingQuestions
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-    public class MergeSort : ISolution
+namespace MergeSort
+{
+    class Program
     {
-        public void Run()
+        static void Main(string[] args)
         {
-            int[] input = new int[] { 13, 1, 4, 1, 5, 9, 2, 6, 5, 3, 12 };
-            int[] output = new int[input.Length];
-            this.MergeSortImpl(input, 0, input.Length - 1, output);
-            output.ToList().ForEach(x => Console.WriteLine("{0}", x));
+            int[] arrayToBeSorted = new int[] { 14, 5, 2, 1, 66, 3, 27, 4, 5, 6, 7 };
+            int[] outputArray = new int[arrayToBeSorted.Length];
+
+            Random r = new Random();
+            int[] largeArray = new int[10 * 1000 * 1000];
+            for (int i = 0; i < largeArray.Length - 1; i++)
+            {
+                largeArray[i] = r.Next(20000);
+            }
+
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+            MergeSort(largeArray, 0, largeArray.Length - 1, outputArray);
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds);
+
+            Console.Read();
         }
 
-        private void MergeSortImpl(int[] input, int start, int end, int[] output)
+        public static void MergeSort(int[] arrayToBeSorted, int start, int end, int[] outputArray)
+        {
+            //Console.WriteLine("Mergint start = " + start + " with end = " + end);
+
+            if (start == end) return;
+
+            int mid = start + (end - start) / 2;
+            MergeSort(arrayToBeSorted, start, mid, outputArray);
+            MergeSort(arrayToBeSorted, mid + 1, end, outputArray);
+            Merge(start, mid + 1, end, arrayToBeSorted, outputArray);
+        }
+
+        public static void MergeSortParallel(int[] arrayToBeSorted, int start, int end, int[] outputArray)
+        {
+            if (start == end) return;
+
+            int mid = start + (end - start) / 2;
+            ParallelOptions p = new ParallelOptions();
+            p.MaxDegreeOfParallelism = 4;
+            Parallel.Invoke(p, () => MergeSortParallel(arrayToBeSorted, start, mid, outputArray),
+                           () => MergeSortParallel(arrayToBeSorted, mid + 1, end, outputArray));
+            Merge(start, mid + 1, end, arrayToBeSorted, outputArray);
+        }
+
+        public static void Merge(int start, int mid, int end, int[] input, int[] output)
+        {
+            int[] tempArray = new int[end - start + 1];
+
+            int i = start;
+            int j = mid;
+            int k = 0;
+
+            while (i < mid && j <= end)
+            {
+                if (input[i] < input[j])
+                {
+                    tempArray[k] = input[i];
+                    i++;
+                    k++;
+                }
+                else
+                {
+                    tempArray[k] = input[j];
+                    k++;
+                    j++;
+                }
+            }
+
+            while (i < mid)
+            {
+                tempArray[k] = input[i];
+                i++;
+                k++;
+            }
+
+            while (j <= end)
+            {
+                tempArray[k] = input[j];
+                j++;
+                k++;
+            }
+
+            for (int n = 0; n < tempArray.Length; n++)
+            {
+                input[start + n] = tempArray[n];
+            }
+        }
+
+        private static void MergeSortImpl(int[] input, int start, int end, int[] output)
         {
             if (start < end)
             {
                 int mid = start + (end - start) / 2;
                 MergeSortImpl(input, start, mid, output);
                 MergeSortImpl(input, mid + 1, end, output);
-                Merge(start, mid, end, input, output);
+                Merge2(start, mid, end, input, output);
             }
 
-            Merge(start, end / 2, end, input, output);
+            Merge2(start, end / 2, end, input, output);
         }
 
-        private void Merge(int start, int mid, int end, int[] input, int[] output)
+        private static void Merge2(int start, int mid, int end, int[] input, int[] output)
         {
             for (int n = start; n <= end; n++)
             {
