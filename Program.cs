@@ -6,8 +6,9 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            var sol = new MergeSort();
+            var sol = new PrintNodePath();
             sol.Run();
+            Console.WriteLine("Done");
             Console.ReadLine();
         }
     }
