@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dijkstra
+namespace CodingQuestions
 {
     class Edge
     {
@@ -32,9 +32,9 @@ namespace Dijkstra
         public int CurrentWeight;
     }
 
-    class Dijkstras
+    class Dijkstras : ISolution
     {
-        static void Main(string[] args)
+        public void Run()
         {
             Vertex vA = new Vertex("vA");
             Vertex vB = new Vertex("vB");

@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HeapSort
+namespace CodingQuestions
 {
-    class Program
+    class HeapSort : ISolution
     {
         private static int[] input = new int[] { 0, 1, 2, 3, 4, 5, 6 };
 
-        static void Main(string[] args)
+        public void Run()
         {
-            HeapSort(input, input.Length);
+            HeapSortImp(input, input.Length);
             foreach (var e in input) Console.WriteLine(e);
             Console.Read();
         }
 
-        public static void HeapSort(int [] array, int count)
+        public void HeapSortImp(int [] array, int count)
         {
             Heapify(array, count);
             int end = count - 1;

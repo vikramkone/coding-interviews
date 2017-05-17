@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MergeSort
+namespace CodingQuestions
 {
-    class Program
+    class MergeSort : ISolution
     {
-        static void Main(string[] args)
+        public void Run()
         {
             int[] arrayToBeSorted = new int[] { 14, 5, 2, 1, 66, 3, 27, 4, 5, 6, 7 };
             int[] outputArray = new int[arrayToBeSorted.Length];
@@ -22,22 +22,22 @@ namespace MergeSort
 
             System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
             sw.Start();
-            MergeSort(largeArray, 0, largeArray.Length - 1, outputArray);
+            MergeSortImp(largeArray, 0, largeArray.Length - 1, outputArray);
             sw.Stop();
             Console.WriteLine(sw.ElapsedMilliseconds);
 
             Console.Read();
         }
 
-        public static void MergeSort(int[] arrayToBeSorted, int start, int end, int[] outputArray)
+        public void MergeSortImp(int[] arrayToBeSorted, int start, int end, int[] outputArray)
         {
             //Console.WriteLine("Mergint start = " + start + " with end = " + end);
 
             if (start == end) return;
 
             int mid = start + (end - start) / 2;
-            MergeSort(arrayToBeSorted, start, mid, outputArray);
-            MergeSort(arrayToBeSorted, mid + 1, end, outputArray);
+            MergeSortImp(arrayToBeSorted, start, mid, outputArray);
+            MergeSortImp(arrayToBeSorted, mid + 1, end, outputArray);
             Merge(start, mid + 1, end, arrayToBeSorted, outputArray);
         }
 
