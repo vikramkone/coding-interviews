@@ -8,7 +8,7 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            int[] A = new int[] { 2, 1, 3, 4, 1, 2, 1, 0, 4 };
+            int[] A = new int[] { 6, 2, 5, 4, 5, 1, 6};
             var sol = new MaxRectangleHistogram(A);
             sol.Run();
             Console.WriteLine("Done");
