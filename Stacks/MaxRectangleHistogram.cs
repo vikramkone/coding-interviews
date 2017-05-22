@@ -26,13 +26,13 @@ namespace CodingQuestions
             {
                 int height = this.input[i];
 
-                // if stack is empty or height is greater than top height, then push that shit
+                // if stack is empty or height is greater than top height, then push that height
                 if (hStack.Count == 0 || height > hStack.Peek())
                 {
                     hStack.Push(height);
                     pStack.Push(i);
                 }
-                else if (height < hStack.Peek()) // if height is less than top height, then pop that shit
+                else if (height < hStack.Peek()) // if height is less than top height, then pop that height
                 {
                     while (hStack.Count != 0 && height < hStack.Peek())
                     {
@@ -42,13 +42,13 @@ namespace CodingQuestions
                         maxArea = Math.Max(currArea, maxArea);
                     }
 
-                    // push that shit
+                    // push that height
                     hStack.Push(height);
                     pStack.Push(width);
                 }
             }
 
-            // pop any remaining shit
+            // pop any remaining hright
             while (hStack.Count != 0)
             {
                 length = hStack.Pop();
