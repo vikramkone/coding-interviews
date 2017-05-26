@@ -8,7 +8,7 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            var sol = new NQueens(4);
+            var sol = new RatInMaze();
             sol.Run();
             Console.WriteLine("Done");
             Console.ReadLine();
