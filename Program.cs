@@ -8,7 +8,8 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            var sol = new RatInMaze();
+            int[] arr = new int[] { 10, 22, 9, 33, 21, 50, 41, 60 };
+            var sol = new LongestIncreasingSequence(arr);
             sol.Run();
             Console.WriteLine("Done");
             Console.ReadLine();

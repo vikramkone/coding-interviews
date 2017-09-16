@@ -4,6 +4,13 @@ namespace BST
 {
     public partial class TraverseWithoutRecursion
     {
+        public class BNode{
+            public BNode parent;
+            public BNode left;
+            public BNode right;
+            public int item;
+        }
+
         public static void PrintInOrder(BNode node)
         {
             BNode curr = node;
