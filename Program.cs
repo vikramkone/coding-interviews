@@ -8,8 +8,20 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            int[] arr = new int[] { 10, 22, 9, 33, 21, 50, 41, 60 };
-            var sol = new LongestIncreasingSequence(arr);
+            List<string> input = new List<string>()
+            {
+                "A,START,0",
+                "A,END,2",
+                "B,START,5",
+                "C,START,10",
+                "C,END,14",
+                "B,END,20"
+            };
+            // A = 2
+            // B = 11
+            // C = 4
+
+            var sol = new ExclusiveTimePerFunction(input);
             sol.Run();
             Console.WriteLine("Done");
             Console.ReadLine();
