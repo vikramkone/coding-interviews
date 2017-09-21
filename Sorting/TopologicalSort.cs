@@ -25,6 +25,45 @@ namespace CodingQuestions
 
         public void Run()
         {
+            HashSet<T> visited = new HashSet<T>();
+            Stack<T> result = new Stack<T>();
+
+            foreach (var node in this.nodes)
+            {
+                if (!visited.Contains(node))
+                {
+                    TopSortUtil(node, visited, result);
+                }
+            }
+
+            while (result.Count > 0)
+            {
+                Console.WriteLine(result.Pop());
+            }
+        }
+
+        private void TopSortUtil(T node, HashSet<T> visited, Stack<T> result)
+        {
+            visited.Add(node);
+
+            // Get all the neighbors
+            var neighbors = this.edges.Where(x => x.Item1.Equals(node)).Select(x => x.Item2);
+
+            foreach (var neighbor in neighbors)
+            {
+                // if not already visited then recurse
+                if (!visited.Contains(neighbor))
+                {
+                    TopSortUtil(neighbor, visited, result);
+                }
+            }
+
+            // once all neighbors are visited, then add to the stack
+            result.Push(node);
+        }
+
+        private void TopSortUsingKahns()
+        {
             // Empty list that will contain the sorted elements
             var result = new List<T>();
 

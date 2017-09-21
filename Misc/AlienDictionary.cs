@@ -4,11 +4,11 @@ namespace CodingQuestions
     using System.Collections.Generic;
     using System.Linq;
 
-    public class AlientDictionary
+    public class AlienDictionary
     {
         private List<string> input;
 
-        public AlientDictionary(List<string> input)
+        public AlienDictionary(List<string> input)
         {
             this.input = input;
         }
