@@ -8,15 +8,26 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            var vertices = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-            var edges = new[]{Tuple.Create(1,2), Tuple.Create(1,3),
-                Tuple.Create(2,4), Tuple.Create(3,5), Tuple.Create(3,6),
-                Tuple.Create(4,7), Tuple.Create(5,7), Tuple.Create(5,8),
-                Tuple.Create(5,6), Tuple.Create(8,9), Tuple.Create(9,10)};
+            var input = new List<string>() {
+                "wrt",
+                "wrf",
+                "er",
+                "ett",
+                "rftt"
+            };
+            input = new List<string>() { "baa", "abcd", "abca", "cab", "cad" };
+            input = new List<string>() { "z", "x", "xa" };
+            var edges = new AlientDictionary(input).CreateEdges();
+            edges = new List<Tuple<char, char>>()
+            {
+                Tuple.Create('b','d'),
+                Tuple.Create('b','a'),
+                Tuple.Create('a','c'),
+                Tuple.Create('f','d'),
+                Tuple.Create('d','a')
+            };
 
-            var graph = new Graph<int>(vertices, edges);
-
-            var sol = new BreadthFirstTraversal<int>(graph, 1);
+            var sol = new TopologicalSort<char>(edges);
             sol.Run();
             Console.WriteLine("Done");
             Console.ReadLine();
