@@ -8,27 +8,24 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            var input = new List<string>() {
-                "wrt",
-                "wrf",
-                "er",
-                "ett",
-                "rftt"
-            };
-            //input = new List<string>() { "baa", "abcd", "abca", "cab", "cad" };
-            //input = new List<string>() { "z", "x", "z" };
-            //input = new List<string>(){"caa", "aaa", "aab"};
-            var edges = new AlienDictionary(input).CreateEdges();
-            /* 
-            edges = new List<Tuple<char, char>>()
+
+            var edges = new List<Tuple<char, char>>()
             {
-                Tuple.Create('b','d'),
-                Tuple.Create('b','a'),
-                Tuple.Create('a','c'),
-                Tuple.Create('d','a')
+                Tuple.Create('A','H'),
+                Tuple.Create('A','G'),
+                Tuple.Create('H','G'),
+                Tuple.Create('A','B'),
+                Tuple.Create('G','C'),
+                Tuple.Create('A','B'),
+                Tuple.Create('B','C'),
+                Tuple.Create('C','E'),
+                Tuple.Create('D','E'),
+                Tuple.Create('E','F'),
+                Tuple.Create('H','E'),
+                Tuple.Create('B','D'),
             };
-            */
-            var sol = new DetectCycle<char>(edges);
+
+            var sol = new ShortestPath<char>(new Graph<char>(edges), 'A', 'E');
             sol.Run();
             Console.WriteLine("Done");
             Console.ReadLine();
