@@ -24,9 +24,10 @@ namespace CodingQuestions
             int size = 2 * this.num;
             int[] input = new int[size];
             CombinationNumbersUtil(input, 1);
+
         }
 
-        private  void CombinationNumbersUtil(int[] input, int n)
+        private void CombinationNumbersUtil(int[] input, int n)
         {
             if (n == this.num + 1)
             {
@@ -49,7 +50,6 @@ namespace CodingQuestions
                     input[i + n + 1] = 0;
                 }
             }
-
         }
 
         // Check if we can place the number 'n' at index 'i'
