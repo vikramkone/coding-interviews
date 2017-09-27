@@ -8,11 +8,27 @@ namespace CodingQuestions
     {
         static void Main(string[] args)
         {
-            var cache = new LRUCache<int, string>(3);
-            cache.Set(1, "A");
-            cache.Set(2, "B");
-            cache.Set(3, "C");
-            cache.Set(4, "D");
+            var trie = new Trie();
+
+            Dictionary<string, int> words = new Dictionary<string, int>()
+            {
+                { "i love you", 5},
+                { "island", 3 },
+                { "ironman",  2},
+                { "i love leetcode", 2}
+            };
+
+            foreach (var kv in words)
+            {
+                Enumerable.Range(0, kv.Value).ToList().ForEach(x => trie.AddWord(kv.Key));
+            }
+
+
+            foreach(var word in trie.GetWords("i ", 3))
+            {
+                Console.WriteLine(word);
+            }
+
             Console.WriteLine("Done");
             Console.ReadLine();
         }
