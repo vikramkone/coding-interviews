@@ -4,7 +4,6 @@ namespace CodingQuestions
     using System.Collections.Generic;
     using System.Linq;
 
-
     public class RandomSampling : ISolution
     {
         private int[] input;
@@ -28,7 +27,7 @@ namespace CodingQuestions
 
             Random r = new Random();
 
-            for (int i = this.K + 1; i < this.input.Length; i++)
+            for (int i = this.K; i < this.input.Length; i++)
             {
                 int j = r.Next(i + 1);
 
