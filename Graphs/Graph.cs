@@ -9,6 +9,10 @@ namespace CodingQuestions
 
         public HashSet<T> Vertices = new HashSet<T>();
 
+        public Graph(Dictionary<T, HashSet<T>> adjList)
+        {
+            this.AdjacencyList = adjList;
+        }
         public Graph(IEnumerable<Tuple<T, T>> edges, bool isDirected = true)
         {
             foreach (var edge in edges)

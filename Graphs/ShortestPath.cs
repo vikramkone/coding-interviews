@@ -36,7 +36,6 @@ namespace CodingQuestions
                 return;
             }
 
-            // this.FindShortestPathDFS();
             Dictionary<T, T> previous;
             bool pathFound = this.FindShortestPathBFS(out previous);
 
@@ -92,57 +91,6 @@ namespace CodingQuestions
             }
 
             return false;
-        }
-
-        public void FindShortestPathDFS()
-        {
-            List<T> path = new List<T>();
-            HashSet<T> visited = new HashSet<T>();
-
-            FindAllPaths(this.start, this.end, path, visited);
-            Console.WriteLine("Found {0} paths", this.paths.Count);
-            var shortestPath = this.paths.First(x => x.Count == this.paths.Min(y => y.Count));
-            Console.WriteLine("Shorted path is {0} and length is {1}", string.Join("->", shortestPath), shortestPathLength);
-        }
-
-        private void FindAllPaths(T curr, T dest, List<T> path, HashSet<T> visited)
-        {
-            // Add to visited list
-            visited.Add(curr);
-
-            // Add to path
-            path.Add(curr);
-
-            // Found a path
-            if (curr.Equals(dest))
-            {
-                this.shortestPathLength = Math.Min(path.Count, this.shortestPathLength);
-
-                Console.WriteLine("{0}", string.Join("->", path));
-                this.paths.Add(path.ToList());
-
-                // uncomment this if you want to get only one path
-                // return; 
-            }
-
-            // get neighbors only if possibility of shortest path
-            if (this.graph.AdjacencyList.ContainsKey(curr) && path.Count < this.shortestPathLength)
-            {
-                var neighbors = this.graph.AdjacencyList[curr];
-
-                // Recurse for each neighbor if not visited
-                foreach (var node in neighbors)
-                {
-                    if (!visited.Contains(node))
-                    {
-                        this.FindAllPaths(node, dest, path, visited);
-                    }
-                }
-            }
-
-            // back track
-            path.RemoveAt(path.Count - 1);
-            visited.Remove(curr);
         }
     }
 }
